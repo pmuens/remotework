@@ -1,7 +1,7 @@
 FlowRouter.route('/', {
   name: 'home',
   action: (params) => {
-    renderMainLayoutWith();
+    renderMainLayoutWith(<JobsList />);
     setTitle('Jobs');
   }
 });
