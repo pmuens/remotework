@@ -15,14 +15,28 @@ header.main-header {
   }
 
   a.button {
-    background: #E74C3C;
     color: #FFFFFF;
+    &:focus {
+      color: inherit;
+    }
+  }
+
+  a.add-job {
+    background: #E74C3C;
     border: darken(#E74C3C, 20%);
+    margin-right: 10px;
     &:hover {
       background: darken(#E74C3C, 10%);
       color: inherit;
     }
-    &:focus {
+  }
+
+  a.browse-jobs {
+    background: #3498DB;
+    border: darken(#3498DB, 20%);
+    margin-left: 10px;
+    &:hover {
+      background: darken(#3498DB, 10%);
       color: inherit;
     }
   }
