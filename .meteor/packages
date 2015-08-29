@@ -9,3 +9,7 @@ less
 mquandalle:jade
 check
 audit-argument-checks
+skeleton:skeleton
+kadira:flow-router
+kadira:react-layout
+react
