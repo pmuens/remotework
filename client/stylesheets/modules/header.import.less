@@ -5,14 +5,24 @@ header.main-header {
 
   h1 {
     font-weight: bold;
+    a {
+      color: #FFFFFF;
+      text-decoration: none;
+      &:hover {
+        color: darken(#FFFFFF, 5%);
+      }
+    }
   }
 
-  a {
+  a.button {
     background: #E74C3C;
     color: #FFFFFF;
     border: darken(#E74C3C, 20%);
     &:hover {
       background: darken(#E74C3C, 10%);
+      color: inherit;
+    }
+    &:focus {
       color: inherit;
     }
   }
