@@ -6,6 +6,14 @@ FlowRouter.route('/', {
   }
 });
 
+FlowRouter.route('/jobs/add', {
+  name: 'addJob',
+  action: (params) => {
+    renderMainLayoutWith(<AddJob />);
+    setTitle('Add job')
+  }
+});
+
 let renderMainLayoutWith = (component) => {
   ReactLayout.render(MainLayout, {
     component: component
