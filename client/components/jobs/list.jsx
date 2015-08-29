@@ -19,7 +19,7 @@ JobsList = React.createClass({
       <div>
         <div className="container">
           <div className="row">
-            <div class="twelve columns">
+            <div className="twelve columns">
               {this.jobItems().length ? (
                 this.jobItems()
               ) : <div className="alert info">There are no jobs available to display</div> }
