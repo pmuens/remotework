@@ -6,7 +6,6 @@
 
 meteor-platform
 less
-mquandalle:jade
 check
 audit-argument-checks
 skeleton:skeleton
