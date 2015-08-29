@@ -10,7 +10,7 @@ Header = React.createClass({
                   <a href="/">Remote Work</a>
                 </h1>
                 <p>Job board for everything that can be done remotely</p>
-                <a className="button add-job" href="/jobs/add">Add job offer</a>
+                <a className="button add-job" href="/jobs/add">Add job</a>
                 <a className="button browse-jobs" href="/">Browse jobs</a>
               </div>
             </div>
