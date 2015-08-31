@@ -25,8 +25,6 @@ Meteor.methods({
 });
 
 Jobs.before.insert((userId, document) => {
-  document.identifier = Random.hexString(64);
-  document.isActive = false;
   document.createdAt = new Date();
   document.updatedAt = new Date();
 });
