@@ -14,6 +14,20 @@ FlowRouter.route('/jobs/add', {
   }
 });
 
+FlowRouter.route('/jobs/:_id/show', {
+  name: 'showJob',
+  action: (params) => {
+    renderMainLayoutWith((<ShowJob />));
+    var jobTitle = 'Job';
+    Tracker.autorun(() => {
+      if (Jobs.findOne()) {
+        jobTitle = (Jobs.findOne().title);
+      }
+      setTitle(jobTitle);
+    });
+  }
+});
+
 let renderMainLayoutWith = (component) => {
   ReactLayout.render(MainLayout, {
     component: component

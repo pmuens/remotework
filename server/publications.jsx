@@ -10,3 +10,11 @@ Meteor.publish('jobs', (limit) => {
     }
   );
 });
+
+Meteor.publish('job', (_id) => {
+  check(_id, String);
+
+  return Jobs.find(
+    { _id: _id }
+  )
+});

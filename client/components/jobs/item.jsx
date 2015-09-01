@@ -4,12 +4,13 @@ JobItem = React.createClass({
   },
 
   render() {
+    let jobPath = FlowRouter.path('showJob', this.props.job);
     return (
       <div>
-        <div className="job">
+        <div className="job-item">
           <div className="row">
             <div className="twelve columns headline">
-              <a className="title" href="#">{this.props.job.title}</a>
+              <a className="title" href={jobPath}>{this.props.job.title}</a>
             </div>
           </div>
           <div className="row">
