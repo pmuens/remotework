@@ -1,14 +1,30 @@
-Meteor.publish('jobs', (limit) => {
+Meteor.publish('jobs', (searchQuery, limit) => {
+  check(searchQuery, String);
   check(limit, Number);
 
+  if (!searchQuery) {
+    return Jobs.find(
+      {},
+      {
+        sort: { createdAt: -1 },
+        fields: { title: true, description: true, email: true, company: true, homepage: true, createdAt: true },
+        limit: limit
+      }
+    );
+  }
   return Jobs.find(
-    {},
+    { $text: { $search: searchQuery } },
     {
-      sort: { createdAt: -1 },
-      fields: { title: true, description: true, email: true, company: true, homepage: true, createdAt: true },
+      fields: {
+        title: true, description: true, email: true, company: true, homepage: true, createdAt: true,
+        score: { $meta: 'textScore' }
+      },
+      sort: {
+        score: { $meta: 'textScore' }
+      },
       limit: limit
     }
-  );
+  )
 });
 
 Meteor.publish('job', (_id) => {

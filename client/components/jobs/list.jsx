@@ -2,14 +2,33 @@ JobsList = React.createClass({
   mixins: [ReactMeteorData],
 
   getInitialState() {
-    return { jobLimit: parseInt(this.props.limit) || this.increment() }
+    return {
+      searchQuery: '',
+      jobLimit: parseInt(this.props.limit) || this.increment()
+    }
   },
 
   getMeteorData() {
-    let jobsSubscription =  Meteor.subscribe('jobs', this.state.jobLimit);
+    let jobsSubscription = Meteor.subscribe('jobs', this.state.searchQuery, this.state.jobLimit);
+    // sort jobs by score if a searchQuery is entered
+    let jobs = (this.state.searchQuery !== '' ? Jobs.find({}, { sort: [['score', 'desc']] }).fetch() : Jobs.find({}, { sort: { createdAt: -1 } }).fetch());
     return {
       subscription: jobsSubscription,
-      jobs: Jobs.find({}, { sort: { createdAt: -1 } }).fetch()
+      jobs: jobs
+    }
+  },
+
+  searchJobs(event) {
+    event.preventDefault();
+    this.setState({ searchQuery: document.getElementById('search-query').value });
+  },
+
+  watchSearchQuery(event) {
+    event.preventDefault();
+    let searchQuery = document.getElementById('search-query').value;
+    // reset the searchQuery-Variable if nothing is entered
+    if (searchQuery.length === 0) {
+      this.setState({ searchQuery: '' });
     }
   },
 
@@ -43,6 +62,13 @@ JobsList = React.createClass({
     return (
       <div>
         <div className="container">
+          <div className="row">
+            <div className="twelve columns">
+              <form onSubmit={this.searchJobs}>
+                <input type="text" id="search-query" className="u-full-width" placeholder="Type something (e.g. JavaScript or Design) and press enter" onChange={this.watchSearchQuery}/>
+              </form>
+            </div>
+          </div>
           <div className="row">
             <div className="twelve columns">
               {this.jobItems().length ? (
