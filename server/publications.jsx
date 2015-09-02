@@ -4,7 +4,7 @@ Meteor.publish('jobs', (searchQuery, limit) => {
 
   if (!searchQuery) {
     return Jobs.find(
-      {},
+      { isActive: true },
       {
         sort: { createdAt: -1 },
         fields: { title: true, description: true, email: true, company: true, homepage: true, createdAt: true },
@@ -13,7 +13,7 @@ Meteor.publish('jobs', (searchQuery, limit) => {
     );
   }
   return Jobs.find(
-    { $text: { $search: searchQuery } },
+    { $text: { $search: searchQuery }, isActive: true },
     {
       fields: {
         title: true, description: true, email: true, company: true, homepage: true, createdAt: true,
@@ -27,10 +27,18 @@ Meteor.publish('jobs', (searchQuery, limit) => {
   )
 });
 
-Meteor.publish('job', (_id) => {
+Meteor.publish('jobById', (_id) => {
   check(_id, String);
 
   return Jobs.find(
     { _id: _id }
+  )
+});
+
+Meteor.publish('jobByIdentifier', (identifier) => {
+  check(identifier, String);
+
+  return Jobs.find(
+    { identifier: identifier }
   )
 });

@@ -3,7 +3,7 @@ ShowJob = React.createClass({
 
   getMeteorData() {
     return {
-      subscription: Meteor.subscribe('job', String(FlowRouter.getParam('_id'))),
+      subscription: Meteor.subscribe('jobById', String(FlowRouter.getParam('_id'))),
       job: Jobs.findOne()
     }
   },

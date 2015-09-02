@@ -20,11 +20,49 @@ Meteor.methods({
       throw new Meteor.Error(422, 'E-Mail should not be blank');
     }
 
+    // add a random-Generated identifier field to the job
+    const identifier = Random.hexString(64);
+    _.extend(job, { identifier: identifier });
+
+    // send an E-Mail to the user
+    if (Meteor.isServer) {
+      Meteor.defer(() => {
+        Email.send({
+          from: 'Remote Work <noreply@remotework.in>',
+          to: job.email,
+          subject: 'Thank you for posting your job "' + job.title + '" on "Remote Work"',
+          html: '' +
+            '<b>Note: Keep this E-Mail as it gives you the possibility to activate, edit and remove the job posting.</b>' +
+            '<br /><br />' +
+            'Please click the link below to activate your job posting: <br />' +
+            '<a href="' + Meteor.absoluteUrl().substring(0, Meteor.absoluteUrl().length - 1) + FlowRouter.path('activateJob', { identifier: identifier }) + '" target="_blank">Activate job posting</a>' +
+            '<br /><br />' +
+            'Regards' +
+            '<br /><br />' +
+            'The "Remote Work"-Team'
+        });
+      });
+    }
+
     return Jobs.insert(job);
+  },
+
+  'jobs.activate': (identifier) => {
+    check(identifier, String);
+
+    if (!identifier) {
+      throw new Meteor.Error(422, 'Identifier should not be blank');
+    }
+
+    return Jobs.update(
+      { identifier: identifier },
+      { $set: { isActive: true } }
+    );
   }
 });
 
 Jobs.before.insert((userId, document) => {
+  document.isActive = false;
   document.createdAt = new Date();
   document.updatedAt = new Date();
 });

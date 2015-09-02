@@ -28,6 +28,14 @@ FlowRouter.route('/jobs/:_id/show', {
   }
 });
 
+FlowRouter.route('/jobs/:identifier/activate', {
+  name: 'activateJob',
+  action: (params) => {
+    renderMainLayoutWith(<ActivateJob />);
+    setTitle('Activating job')
+  }
+});
+
 let renderMainLayoutWith = (component) => {
   ReactLayout.render(MainLayout, {
     component: component
