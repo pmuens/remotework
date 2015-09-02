@@ -37,6 +37,9 @@ Meteor.methods({
             'Please click the link below to activate your job posting: <br />' +
             '<a href="' + Meteor.absoluteUrl().substring(0, Meteor.absoluteUrl().length - 1) + FlowRouter.path('activateJob', { identifier: identifier }) + '" target="_blank">Activate job posting</a>' +
             '<br /><br />' +
+            'Edit or remove your job posting with these links: <br />' +
+            '<a href="' + Meteor.absoluteUrl().substring(0, Meteor.absoluteUrl().length - 1) + FlowRouter.path('removeJob', { identifier: identifier }) + '" target="_blank">Remove job posting</a>' +
+            '<br /><br />' +
             'Regards' +
             '<br /><br />' +
             'The "Remote Work"-Team'
@@ -58,6 +61,16 @@ Meteor.methods({
       { identifier: identifier },
       { $set: { isActive: true } }
     );
+  },
+
+  'jobs.remove': (identifier) => {
+    check(identifier, String);
+
+    if (!identifier) {
+      throw new Meteor.Error(422, 'Identifier should not be blank');
+    }
+
+    return Jobs.remove({ identifier: identifier });
   }
 });
 

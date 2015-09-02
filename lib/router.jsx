@@ -36,6 +36,14 @@ FlowRouter.route('/jobs/:identifier/activate', {
   }
 });
 
+FlowRouter.route('/jobs/:identifier/remove', {
+  name: 'removeJob',
+  action: (params) => {
+    renderMainLayoutWith(<RemoveJob />);
+    setTitle('Removing job')
+  }
+});
+
 let renderMainLayoutWith = (component) => {
   ReactLayout.render(MainLayout, {
     component: component
