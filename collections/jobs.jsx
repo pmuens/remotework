@@ -32,12 +32,14 @@ Meteor.methods({
           to: job.email,
           subject: 'Thank you for posting your job "' + job.title + '" on "Remote Work"',
           html: '' +
-            '<b>Note: Keep this E-Mail as it gives you the possibility to activate, edit and remove the job posting.</b>' +
+            '<b>Note: Keep this E-Mail as it gives you the possibility to activate, update and remove the job posting.</b>' +
             '<br /><br />' +
             'Please click the link below to activate your job posting: <br />' +
             '<a href="' + Meteor.absoluteUrl().substring(0, Meteor.absoluteUrl().length - 1) + FlowRouter.path('activateJob', { identifier: identifier }) + '" target="_blank">Activate job posting</a>' +
             '<br /><br />' +
-            'Edit or remove your job posting with these links: <br />' +
+            'Update or remove your job posting with these links: <br />' +
+            '<a href="' + Meteor.absoluteUrl().substring(0, Meteor.absoluteUrl().length - 1) + FlowRouter.path('updateJob', { identifier: identifier }) + '" target="_blank">Update job posting</a>' +
+            '<br />' +
             '<a href="' + Meteor.absoluteUrl().substring(0, Meteor.absoluteUrl().length - 1) + FlowRouter.path('removeJob', { identifier: identifier }) + '" target="_blank">Remove job posting</a>' +
             '<br /><br />' +
             'Regards' +
@@ -71,6 +73,32 @@ Meteor.methods({
     }
 
     return Jobs.remove({ identifier: identifier });
+  },
+
+  'jobs.update': (identifier, job) => {
+    check(identifier, String);
+    check(job, {
+      title: String,
+      description: String,
+      email: String,
+      company: String,
+      homepage: String
+    });
+
+    if (!job.title) {
+      throw new Meteor.Error(422, 'Title should not be blank');
+    }
+    if (!job.description) {
+      throw new Meteor.Error(422, 'Description should not be blank');
+    }
+    if (!job.email) {
+      throw new Meteor.Error(422, 'E-Mail should not be blank');
+    }
+
+    return Jobs.update(
+      { identifier: identifier },
+      { $set: { title: job.title, description: job.description, email: job.email, company: job.company, homepage: job.homepage } }
+    );
   }
 });
 
