@@ -31,7 +31,8 @@ Meteor.publish('jobById', (_id) => {
   check(_id, String);
 
   return Jobs.find(
-    { _id: _id }
+    { _id: _id },
+    { fields: { title: true, description: true, email: true, company: true, homepage: true, createdAt: true } }
   )
 });
 
@@ -39,6 +40,7 @@ Meteor.publish('jobByIdentifier', (identifier) => {
   check(identifier, String);
 
   return Jobs.find(
-    { identifier: identifier }
+    { identifier: identifier },
+    { fields: { title: true, description: true, email: true, company: true, homepage: true, createdAt: true } }
   )
 });

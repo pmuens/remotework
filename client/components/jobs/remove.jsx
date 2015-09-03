@@ -12,7 +12,7 @@ RemoveJob = React.createClass({
     // call Meteor method to activate the job posting
     if (this.data.job) {
       if (confirm('Do you really want to remove this job?')) {
-        Meteor.call('jobs.remove', this.data.job.identifier, (error) => {
+        Meteor.call('jobs.remove', String(FlowRouter.getParam('identifier')), (error) => {
           if (error) {
             sAlert.error(error.reason);
           } else {

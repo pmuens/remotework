@@ -11,7 +11,7 @@ ActivateJob = React.createClass({
   render() {
     // call Meteor method to activate the job posting
     if (this.data.job) {
-      Meteor.call('jobs.activate', this.data.job.identifier, (error) => {
+      Meteor.call('jobs.activate', String(FlowRouter.getParam('identifier')), (error) => {
         if (error) {
           sAlert.error(error.reason);
         } else {
