@@ -27,14 +27,14 @@ ShowJob = React.createClass({
               <div className="row">
                 <div className="three columns">
                   {this.data.job && this.data.job.company? (
-                    <div className="company">{this.data.job && this.data.job.company}</div>
+                    <div><i className="fa fa-building"></i><span className="company">{this.data.job.company}</span></div>
                   ) : null}
                   {this.data.job && this.data.job.homepage? (
-                    <a className="homepage" href={this.data.job && this.data.job.homepage} target="_blank">{this.data.job && this.data.job.homepage}</a>
+                    <div><i className="fa fa-desktop"></i><a className="homepage" href={this.data.job && this.data.job.homepage} target="_blank">{this.data.job && this.data.job.homepage}</a></div>
                   ) : null}
-                  <div className="email">{this.data.job && this.data.job.email}</div>
+                  <i className="fa fa-envelope"></i><span className="email">{this.data.job && this.data.job.email}</span>
                   <hr />
-                  Posted on {this.createdAt()}
+                  <i className="fa fa-calendar"></i><span className="created-at">Posted on {this.createdAt()}</span>
                 </div>
                 <div className="nine columns">
                   {this.data.job && this.data.job.description}

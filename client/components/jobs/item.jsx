@@ -15,11 +15,11 @@ JobItem = React.createClass({
           </div>
           <div className="row">
             <div className="three columns">
-              {this.createdAt()}
+              <i className="fa fa-calendar"></i><span className="created-at">{this.createdAt()}</span>
             </div>
             {this.props.job.company ? (
               <div className="nine columns">
-                <span className="u-pull-right">{this.props.job.company}</span>
+                <div className="u-pull-right"><i className="fa fa-building"></i><span className="company">{this.props.job.company}</span></div>
               </div>
             ) : null}
           </div>
