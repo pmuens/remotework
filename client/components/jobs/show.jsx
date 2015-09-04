@@ -37,7 +37,7 @@ ShowJob = React.createClass({
                   <i className="fa fa-calendar"></i><span className="created-at">Posted on {this.createdAt()}</span>
                 </div>
                 <div className="nine columns">
-                  {this.data.job && this.data.job.description}
+                  <pre>{this.data.job && this.data.job.description}</pre>
                 </div>
               </div>
             </div>
