@@ -12,6 +12,10 @@ ShowJob = React.createClass({
     return moment(this.data.job && this.data.job.createdAt).format('L');
   },
 
+  mailtoEmail() {
+    return `mailto:${this.data.job && this.data.job.email}`
+  },
+
   render() {
     return (
       <div>
@@ -32,7 +36,7 @@ ShowJob = React.createClass({
                   {this.data.job && this.data.job.homepage? (
                     <div><i className="fa fa-desktop"></i><a className="homepage" href={this.data.job && this.data.job.homepage} target="_blank">{this.data.job && this.data.job.homepage}</a></div>
                   ) : null}
-                  <i className="fa fa-envelope"></i><span className="email">{this.data.job && this.data.job.email}</span>
+                  <i className="fa fa-envelope"></i><a className="email" href={this.mailtoEmail()}>{this.data.job && this.data.job.email}</a>
                   <hr />
                   <i className="fa fa-calendar"></i><span className="created-at">Posted on {this.createdAt()}</span>
                 </div>
