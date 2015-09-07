@@ -1,7 +1,6 @@
 ################ Meteor ################
 .meteor/local
 packages/*
-settings.json
 
 ################ Sublime Text ################
 # workspace files are user-specific
