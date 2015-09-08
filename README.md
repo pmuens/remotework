@@ -2,6 +2,8 @@
 Remote Work is a job board for remote jobs of any kind.
 It is written with Meteor, ES6 and React.
 
+![remotework](https://cloud.githubusercontent.com/assets/1606004/9727000/2da954a2-55fa-11e5-8648-b114ba211ba1.png)
+
 ## Setup
 1. Clone the repository
 2. cd into the project folder
