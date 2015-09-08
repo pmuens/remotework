@@ -4,7 +4,7 @@ JobItem = React.createClass({
   },
 
   jobPath() {
-    return FlowRouter.path('showJob', { slug: this.props.job.slug });
+    return FlowRouter.path('showJob', { slug: this.props.job.slug, _id: this.props.job._id });
   },
 
   render() {

@@ -27,11 +27,11 @@ Meteor.publish('jobs', (searchQuery, limit) => {
   )
 });
 
-Meteor.publish('jobBySlug', (slug) => {
-  check(slug, String);
+Meteor.publish('jobById', (_id) => {
+  check(_id, String);
 
   return Jobs.find(
-    { slug: slug },
+    { _id: _id },
     { fields: { title: true, description: true, email: true, company: true, homepage: true, slug: true, createdAt: true } }
   )
 });
