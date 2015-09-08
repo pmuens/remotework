@@ -7,7 +7,7 @@ Meteor.publish('jobs', (searchQuery, limit) => {
       { isActive: true },
       {
         sort: { createdAt: -1 },
-        fields: { title: true, description: true, email: true, company: true, homepage: true, createdAt: true },
+        fields: { title: true, description: true, email: true, company: true, homepage: true, slug: true, createdAt: true },
         limit: limit
       }
     );
@@ -16,7 +16,7 @@ Meteor.publish('jobs', (searchQuery, limit) => {
     { $text: { $search: searchQuery }, isActive: true },
     {
       fields: {
-        title: true, description: true, email: true, company: true, homepage: true, createdAt: true,
+        title: true, description: true, email: true, company: true, homepage: true, slug: true, createdAt: true,
         score: { $meta: 'textScore' }
       },
       sort: {
@@ -27,12 +27,12 @@ Meteor.publish('jobs', (searchQuery, limit) => {
   )
 });
 
-Meteor.publish('jobById', (_id) => {
-  check(_id, String);
+Meteor.publish('jobBySlug', (slug) => {
+  check(slug, String);
 
   return Jobs.find(
-    { _id: _id },
-    { fields: { title: true, description: true, email: true, company: true, homepage: true, createdAt: true } }
+    { slug: slug },
+    { fields: { title: true, description: true, email: true, company: true, homepage: true, slug: true, createdAt: true } }
   )
 });
 
@@ -41,6 +41,6 @@ Meteor.publish('jobByIdentifier', (identifier) => {
 
   return Jobs.find(
     { identifier: identifier },
-    { fields: { title: true, description: true, email: true, company: true, homepage: true, createdAt: true } }
+    { fields: { title: true, description: true, email: true, company: true, homepage: true, slug: true, createdAt: true } }
   )
 });

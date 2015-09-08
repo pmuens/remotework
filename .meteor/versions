@@ -43,6 +43,7 @@ momentjs:moment@2.10.6
 mongo@1.1.0
 observe-sequence@1.0.6
 okgrow:analytics@0.3.0
+ongoworks:speakingurl@5.0.1
 ordered-dict@1.0.3
 random@1.0.3
 react@0.1.7

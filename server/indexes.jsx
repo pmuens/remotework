@@ -3,4 +3,7 @@ if (Meteor.isServer) {
     'title': 'text',
     'description': 'text'
   });
+  Jobs._ensureIndex({
+    'slug': 1
+  });
 }

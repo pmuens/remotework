@@ -14,7 +14,7 @@ FlowRouter.route('/jobs/add', {
   }
 });
 
-FlowRouter.route('/jobs/:_id/show', {
+FlowRouter.route('/job/:slug', {
   name: 'showJob',
   action: (params) => {
     renderMainLayoutWith((<ShowJob />));

@@ -20,9 +20,9 @@ Meteor.methods({
       throw new Meteor.Error(422, 'E-Mail should not be blank');
     }
 
-    // add a random-Generated identifier field to the job
+    const slug = getSlug(job.title);
     const identifier = Random.hexString(64);
-    _.extend(job, { identifier: identifier });
+    _.extend(job, { identifier: identifier, slug: slug });
 
     // send an E-Mail to the user
     if (Meteor.isServer) {
@@ -95,9 +95,11 @@ Meteor.methods({
       throw new Meteor.Error(422, 'E-Mail should not be blank');
     }
 
+    const slug = getSlug(job.title);
+
     return Jobs.update(
       { identifier: identifier },
-      { $set: { title: job.title, description: job.description, email: job.email, company: job.company, homepage: job.homepage } }
+      { $set: { title: job.title, description: job.description, email: job.email, company: job.company, homepage: job.homepage, slug: slug } }
     );
   }
 });

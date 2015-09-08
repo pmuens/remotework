@@ -3,6 +3,10 @@ JobItem = React.createClass({
     return moment(this.props.job.createdAt).format('L');
   },
 
+  jobPath() {
+    return FlowRouter.path('showJob', { slug: this.props.job.slug });
+  },
+
   render() {
     let jobPath = FlowRouter.path('showJob', this.props.job);
     return (
@@ -10,7 +14,7 @@ JobItem = React.createClass({
         <div className="job-item">
           <div className="row">
             <div className="twelve columns headline">
-              <a className="title" href={jobPath}>{this.props.job.title}</a>
+              <a className="title" href={this.jobPath()}>{this.props.job.title}</a>
             </div>
           </div>
           <div className="row">
