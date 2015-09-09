@@ -2,8 +2,13 @@ JobsList = React.createClass({
   mixins: [ReactMeteorData],
 
   getInitialState() {
+    // save the searchQuery if the user has searched for something
+    let searchQuery = '';
+    if (window.location.hash.length !== 0) {
+      searchQuery = window.location.hash.substring(1);
+    }
     return {
-      searchQuery: '',
+      searchQuery: searchQuery,
       jobLimit: parseInt(this.props.limit) || this.increment()
     }
   },
@@ -26,6 +31,8 @@ JobsList = React.createClass({
   watchSearchQuery(event) {
     event.preventDefault();
     let searchQuery = document.getElementById('search-query').value;
+    // store the searchQuery in the hash
+    window.location.hash = searchQuery;
     // reset the searchQuery-Variable if nothing is entered
     if (searchQuery.length === 0) {
       this.setState({ searchQuery: '' });
@@ -56,6 +63,12 @@ JobsList = React.createClass({
 
   onLoadMore() {
     this.setState({ jobLimit: this.state.jobLimit + this.increment() })
+  },
+
+  componentDidMount() {
+    if (window.location.hash.length !== 0) {
+      document.getElementById('search-query').value = this.state.searchQuery;
+    }
   },
 
   render() {
