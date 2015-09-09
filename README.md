@@ -1,4 +1,4 @@
-# Remote Work
+# [Remote Work](http://remotework.in)
 Remote Work is a job board for remote jobs of any kind.
 It is written with Meteor, ES6 and React.
 
