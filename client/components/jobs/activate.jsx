@@ -5,7 +5,7 @@ ActivateJob = React.createClass({
     return {
       subscription: Meteor.subscribe('jobByIdentifier', String(FlowRouter.getParam('identifier'))),
       job: Jobs.findOne()
-    }
+    };
   },
 
   render() {
@@ -15,7 +15,7 @@ ActivateJob = React.createClass({
         if (error) {
           sAlert.error(error.reason);
         } else {
-          FlowRouter.go('/')
+          FlowRouter.go('/');
         }
       });
     }
@@ -31,6 +31,6 @@ ActivateJob = React.createClass({
           </div>
         </div>
       </div>
-    )
+    );
   }
 });

@@ -10,7 +10,7 @@ JobsList = React.createClass({
     return {
       searchQuery: searchQuery,
       jobLimit: parseInt(this.props.limit) || this.increment()
-    }
+    };
   },
 
   getMeteorData() {
@@ -20,7 +20,7 @@ JobsList = React.createClass({
     return {
       subscription: jobsSubscription,
       jobs: jobs
-    }
+    };
   },
 
   searchJobs(event) {
@@ -45,7 +45,7 @@ JobsList = React.createClass({
 
   componentWillReceiveProps(nextProps) {
     if(nextProps.filter !== this.props.filter) {
-      this.setState({jobLimit: nextProps.limit})
+      this.setState({jobLimit: nextProps.limit});
     }
   },
 
@@ -57,12 +57,12 @@ JobsList = React.createClass({
 
   loadMore() {
     if(Jobs.find({}, { limit: this.jobLimit }).count() === this.state.jobLimit) {
-      return <a className="button u-full-width" onClick={this.onLoadMore}>Load more</a>
+      return <a className="button u-full-width" onClick={this.onLoadMore}>Load more</a>;
     }
   },
 
   onLoadMore() {
-    this.setState({ jobLimit: this.state.jobLimit + this.increment() })
+    this.setState({ jobLimit: this.state.jobLimit + this.increment() });
   },
 
   componentDidMount() {
@@ -96,6 +96,6 @@ JobsList = React.createClass({
           </div>
         </div>
       </div>
-    )
+    );
   }
 });

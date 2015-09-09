@@ -15,9 +15,8 @@ JobForm = React.createClass({
       email: '',
       company: '',
       homepage: '',
-
       submitErrors: {}
-    }
+    };
   },
 
   errorMessage (field) {
@@ -57,7 +56,7 @@ JobForm = React.createClass({
           if (error) {
             sAlert.error(error.reason);
           } else {
-            FlowRouter.go('/')
+            FlowRouter.go('/');
           }
         });
       } else {
@@ -65,7 +64,7 @@ JobForm = React.createClass({
           if (error) {
             sAlert.error(error.reason);
           } else {
-            FlowRouter.go('/')
+            FlowRouter.go('/');
           }
         });
       }
@@ -82,18 +81,18 @@ JobForm = React.createClass({
                 <b>Note:</b> Please submit only job offers. Inconvenient / Spam entries might be removed.
               </div>
               <form className="add-update-job" onSubmit={this.onSubmit}>
-                <label for="title">Title</label>
+                <label htmlFor="title">Title</label>
                 <input type="text" className={"u-full-width " + this.errorClass('title')} placeholder="Title" valueLink={this.linkState('title')}/>
                 <div className="help-block">{this.errorMessage('title')}</div>
-                <label for="description">Description</label>
+                <label htmlFor="description">Description</label>
                 <textarea className={"u-full-width " + this.errorClass('description')} rows="20" placeholder="Description" valueLink={this.linkState('description')}></textarea>
                 <div className="help-block">{this.errorMessage('description')}</div>
-                <label for="email">E-Mail</label>
+                <label htmlFor="email">E-Mail</label>
                 <input type="email" className={"u-full-width " + this.errorClass('email')} placeholder="E-Mail" valueLink={this.linkState('email')}/>
                 <div className="help-block">{this.errorMessage('email')}</div>
-                <label for="company">Company (optional)</label>
+                <label htmlFor="company">Company (optional)</label>
                 <input type="text" className="u-full-width" placeholder="Company (optional)" valueLink={this.linkState('company')}/>
-                <label for="homepage">Homepage (optional)</label>
+                <label htmlFor="homepage">Homepage (optional)</label>
                 <input type="text" className="u-full-width" placeholder="Homepage (optional)" valueLink={this.linkState('homepage')}/>
                 <input type="submit" className="button button-primary u-full-width" value="Save"/>
               </form>
@@ -101,6 +100,6 @@ JobForm = React.createClass({
           </div>
         </div>
       </div>
-    )
+    );
   }
 });

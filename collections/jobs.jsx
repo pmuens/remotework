@@ -48,8 +48,8 @@ Meteor.methods({
         });
       });
     }
-
-    return Jobs.insert(job);
+    let jobID = Jobs.insert(job);
+    return jobID;
   },
 
   'jobs.activate': (identifier) => {

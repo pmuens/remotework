@@ -6,6 +6,6 @@ MainLayout = React.createClass({
         {this.props.component}
         <Footer />
       </div>
-    )
+    );
   }
 });
