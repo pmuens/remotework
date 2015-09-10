@@ -1,5 +1,5 @@
 AddJob = React.createClass({
   render() {
-    return <JobForm action='add'/>
+    return <JobForm action='add'/>;
   }
 });

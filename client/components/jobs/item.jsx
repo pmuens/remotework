@@ -29,6 +29,6 @@ JobItem = React.createClass({
           </div>
         </div>
       </div>
-    )
+    );
   }
 });

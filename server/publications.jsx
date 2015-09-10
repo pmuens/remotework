@@ -24,7 +24,7 @@ Meteor.publish('jobs', (searchQuery, limit) => {
       },
       limit: limit
     }
-  )
+  );
 });
 
 Meteor.publish('jobById', (_id) => {
@@ -33,7 +33,7 @@ Meteor.publish('jobById', (_id) => {
   return Jobs.find(
     { _id: _id },
     { fields: { title: true, description: true, email: true, company: true, homepage: true, slug: true, createdAt: true } }
-  )
+  );
 });
 
 Meteor.publish('jobByIdentifier', (identifier) => {
@@ -42,5 +42,5 @@ Meteor.publish('jobByIdentifier', (identifier) => {
   return Jobs.find(
     { identifier: identifier },
     { fields: { title: true, description: true, email: true, company: true, homepage: true, slug: true, createdAt: true } }
-  )
+  );
 });

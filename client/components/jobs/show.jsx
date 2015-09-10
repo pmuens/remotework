@@ -5,7 +5,7 @@ ShowJob = React.createClass({
     return {
       subscription: Meteor.subscribe('jobById', String(FlowRouter.getParam('_id'))),
       job: Jobs.findOne()
-    }
+    };
   },
 
   createdAt() {
@@ -13,7 +13,7 @@ ShowJob = React.createClass({
   },
 
   mailtoEmail() {
-    return `mailto:${this.data.job && this.data.job.email}`
+    return `mailto:${this.data.job && this.data.job.email}`;
   },
 
   render() {
@@ -48,6 +48,6 @@ ShowJob = React.createClass({
           </div>
         </div>
       </div>
-    )
+    );
   }
 });

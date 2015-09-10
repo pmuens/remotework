@@ -5,7 +5,7 @@ RemoveJob = React.createClass({
     return {
       subscription: Meteor.subscribe('jobByIdentifier', String(FlowRouter.getParam('identifier'))),
       job: Jobs.findOne()
-    }
+    };
   },
 
   render() {
@@ -35,6 +35,6 @@ RemoveJob = React.createClass({
           </div>
         </div>
       </div>
-    )
+    );
   }
 });
