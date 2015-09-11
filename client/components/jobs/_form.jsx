@@ -80,6 +80,11 @@ JobForm = React.createClass({
               <div className="alert info">
                 <b>Note:</b> Please submit only job offers. Inconvenient / Spam entries might be removed.
               </div>
+              {this.props.action === 'add' ? (
+                <div className="alert info">
+                  <b>An E-Mail with an activation link will be sent to you once you've created the job</b>
+                </div>
+              ) : null}
               <form className="add-update-job" onSubmit={this.onSubmit}>
                 <label htmlFor="title">Title</label>
                 <input type="text" className={"u-full-width " + this.errorClass('title')} placeholder="Title" valueLink={this.linkState('title')}/>
